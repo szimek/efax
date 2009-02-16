@@ -1,0 +1,33 @@
+= ruby-efax
+
+Very basic Ruby interface to the eFax Developer (http://www.efaxdeveloper.com) service.
+
+Strange class names and their attribute names come from "eFax Developer Universal User Guide for Outbound Processing" document.
+You can get it on eFax Developer pages or on Scribd (http://www.scribd.com/doc/5382394/eFax-Developer-Universal-User-Guide-Outbound).
+
+== Usage
+
+First you need to provide your account id and credentials:
+  EFax::Request.account_id = <your account id>
+  EFax::Request.user       = <your login>
+  EFax::Request.password   = <your password>
+
+
+Sending an HTML page using eFax service is pretty simple:
+  response = EFax::OutboundRequest.post(recipient_name, company_name, fax_number, subject, html_content)
+
+The response object has the following attributes:
+  response.status_code
+  response.doc_id           # unique identifier of your request
+  response.error_level
+  response.error_message
+See EFax::RequestStatus class for details on status codes.
+
+
+Having ID of your request, you can get its current status:
+  response = OutboundRequestStatus.post(doc_id)
+
+The status response has the following attributes:
+  response.status_code
+  response.message          # "user friendly" status message
+See EFax::QueryStatus class for details on status codes.
