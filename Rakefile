@@ -11,7 +11,7 @@ spec = Gem::Specification.new do |s|
   s.version = '0.0.1'
   s.has_rdoc = true
   s.extra_rdoc_files = ['README', 'LICENSE']
-  s.summary = 'Ruby interface to the eFax Developer service'
+  s.summary = 'Ruby library for accessing the eFax Developer service'
   s.description = s.summary
   s.author = ''
   s.email = ''
@@ -31,7 +31,7 @@ Rake::RDocTask.new do |rdoc|
   files =['README', 'lib/**/*.rb']
   rdoc.rdoc_files.add(files)
   rdoc.main = "README" # page to start on
-  rdoc.title = "ruby-efax: Ruby interface to the eFax Developer service"
+  rdoc.title = 'ruby-efax: Ruby library for accessing the eFax Developer service'
   rdoc.rdoc_dir = 'doc/rdoc' # rdoc output folder
   rdoc.options << '--line-numbers'
 end

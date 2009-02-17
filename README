@@ -1,6 +1,6 @@
 = ruby-efax
 
-Very basic Ruby interface to the eFax Developer (http://www.efaxdeveloper.com) service.
+Ruby library for accessing the eFax Developer service (http://www.efaxdeveloper.com).
 
 Strange class names and their attribute names come from "eFax Developer Universal User Guide for Outbound Processing" document.
 You can get it on eFax Developer pages or on Scribd (http://www.scribd.com/doc/5382394/eFax-Developer-Universal-User-Guide-Outbound).
@@ -21,6 +21,7 @@ The response object has the following attributes:
   response.doc_id           # unique identifier of your request
   response.error_level
   response.error_message
+
 See EFax::RequestStatus class for details on status codes.
 
 
@@ -30,4 +31,5 @@ Having ID of your request, you can get its current status:
 The status response has the following attributes:
   response.status_code
   response.message          # "user friendly" status message
+
 See EFax::QueryStatus class for details on status codes.

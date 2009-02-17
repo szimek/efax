@@ -1,0 +1,2 @@
+- provide simpler interface like EFax#send_request and EFax#query_status
+- raise exception if account info or credentials are not set
