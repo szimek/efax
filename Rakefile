@@ -6,25 +6,22 @@ require 'rake/rdoctask'
 require 'rake/testtask'
 require 'spec/rake/spectask'
 
-spec = Gem::Specification.new do |s|
-  s.name = 'ruby-efax'
-  s.version = '0.0.1'
-  s.has_rdoc = true
-  s.extra_rdoc_files = ['README', 'LICENSE']
-  s.summary = 'Ruby library for accessing the eFax Developer service'
-  s.description = s.summary
-  s.author = ''
-  s.email = ''
-  # s.executables = ['your_executable_here']
-  s.files = %w(README Rakefile) + Dir.glob("{bin,lib,spec}/**/*")
-  s.require_path = "lib"
-  s.bindir = "bin"
-end
-
-Rake::GemPackageTask.new(spec) do |p|
-  p.gem_spec = spec
-  p.need_tar = true
-  p.need_zip = true
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gem|
+    gem.name = "ruby-efax"
+    gem.summary = 'Ruby library for accessing the eFax Developer service'
+    gem.authors = ["Szymon Nowak"]
+    gem.email = "szimek@gmail.com"
+    gem.homepage = "http://github.com/szimek/ruby-efax"
+    gem.rubyforge_project = "ruby-efax"
+  end
+  
+  Jeweler::RubyforgeTasks.new do |rubyforge|
+    rubyforge.doc_task = "rdoc"
+  end
+rescue LoadError
+  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
 
 Rake::RDocTask.new do |rdoc|
