@@ -80,15 +80,15 @@ module EFax
   end  
 
   class OutboundRequest < Request
-    def self.post(name, company, fax_number, subject, html_content)
-      xml_request = xml(name, company, fax_number, subject, html_content)
+    def self.post(name, company, fax_number, subject, content, content_type = :html)
+      xml_request = xml(name, company, fax_number, subject, content, content_type)
       response = Net::HTTPS.start(EFax::URI.host, EFax::URI.port) do |https|
         https.post(EFax::URI.path, params(xml_request), EFax::HEADERS)
       end
       OutboundResponse.new(response)
     end
     
-    def self.xml(name, company, fax_number, subject, html_content)
+    def self.xml(name, company, fax_number, subject, content, content_type = :html)
       xml_request = ""
       xml = Builder::XmlMarkup.new(:target => xml_request, :indent => 2 )
       xml.instruct! :xml, :version => '1.0'
@@ -116,9 +116,9 @@ module EFax
           end
           xml.Files do
             xml.File do
-              encoded_html = Base64.encode64(html_content).delete("\n")
-              xml.FileContents(encoded_html)
-              xml.FileType("html")
+              encoded_content = Base64.encode64(content).delete("\n")
+              xml.FileContents(encoded_content)
+              xml.FileType(content_type.to_s)
             end
           end
         end
