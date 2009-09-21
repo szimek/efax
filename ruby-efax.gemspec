@@ -15,11 +15,13 @@ Gem::Specification.new do |s|
     "README"
   ]
   s.files = [
-    "README",
+    ".gitignore",
+     "README",
      "Rakefile",
      "TODO",
      "VERSION",
      "lib/efax.rb",
+     "ruby-efax.gemspec",
      "test/efax_test.rb",
      "test/test_helper.rb"
   ]
