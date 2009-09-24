@@ -42,9 +42,9 @@ end
 
 module EFax
   # URL of eFax web service
-  URL      = "https://secure.efaxdeveloper.com/EFax_WebFax.serv"  
+  Url      = "https://secure.efaxdeveloper.com/EFax_WebFax.serv"  
   # URI of eFax web service
-  URI      = URI.parse(URL)
+  Uri      = URI.parse(Url)
   # Prefered content type
   HEADERS  = {'Content-Type' => 'text/xml'}  
 
@@ -82,8 +82,8 @@ module EFax
   class OutboundRequest < Request
     def self.post(name, company, fax_number, subject, content, content_type = :html)
       xml_request = xml(name, company, fax_number, subject, content, content_type)
-      response = Net::HTTPS.start(EFax::URI.host, EFax::URI.port) do |https|
-        https.post(EFax::URI.path, params(xml_request), EFax::HEADERS)
+      response = Net::HTTPS.start(EFax::Uri.host, EFax::Uri.port) do |https|
+        https.post(EFax::Uri.path, params(xml_request), EFax::HEADERS)
       end
       OutboundResponse.new(response)
     end
@@ -161,8 +161,8 @@ module EFax
   class OutboundStatus < Request
     def self.post(doc_id)
       data = params(xml(doc_id))
-      response = Net::HTTPS.start(EFax::URI.host, EFax::URI.port) do |https|
-        https.post(EFax::URI.path, data, EFax::HEADERS)
+      response = Net::HTTPS.start(EFax::Uri.host, EFax::Uri.port) do |https|
+        https.post(EFax::Uri.path, data, EFax::HEADERS)
       end
       OutboundStatusResponse.new(response)
     end
