@@ -1,4 +1,4 @@
-= ruby-efax
+= efax
 
 Ruby library for accessing the eFax Developer service (http://www.efaxdeveloper.com).
 
@@ -14,7 +14,7 @@ First you need to provide your account id and credentials:
 
 
 Sending an HTML page using eFax service is pretty simple:
-  response = EFax::OutboundRequest.post(recipient_name, company_name, fax_number, subject, html_content)
+  response = EFax::OutboundRequest.post(recipient_name, company_name, fax_number, subject, content)
 
 The response object has the following attributes:
   response.status_code
