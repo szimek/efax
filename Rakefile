@@ -28,11 +28,11 @@ rescue LoadError
 end
 
 Rake::RDocTask.new do |rdoc|
-  files =['README', 'lib/**/*.rb']
+  files =['README.rdoc', 'lib/**/*.rb']
   rdoc.rdoc_files.add(files)
-  rdoc.main = "README" # page to start on
+  rdoc.main = "README.rdoc" # page to start on
   rdoc.title = 'eFax: Ruby library for accessing the eFax Developer service'
-  rdoc.rdoc_dir = 'doc/rdoc' # rdoc output folder
+  rdoc.rdoc_dir = 'rdoc' # rdoc output folder
   rdoc.options << '--line-numbers'
 end
 
