@@ -9,12 +9,12 @@ require 'spec/rake/spectask'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "ruby-efax"
+    gem.name = "efax"
     gem.summary = 'Ruby library for accessing the eFax Developer service'
     gem.authors = ["Szymon Nowak", "Pawel Kozlowski"]
     gem.email = "szimek@gmail.com"
-    gem.homepage = "http://github.com/szimek/ruby-efax"
-    gem.rubyforge_project = "ruby-efax"
+    gem.homepage = "http://github.com/szimek/efax"
+    gem.rubyforge_project = "efax"
     
     gem.add_dependency('hpricot', '>= 0.8.1')
     gem.add_development_dependency('mocha', '>= 0.9')
@@ -31,7 +31,7 @@ Rake::RDocTask.new do |rdoc|
   files =['README', 'lib/**/*.rb']
   rdoc.rdoc_files.add(files)
   rdoc.main = "README" # page to start on
-  rdoc.title = 'ruby-efax: Ruby library for accessing the eFax Developer service'
+  rdoc.title = 'eFax: Ruby library for accessing the eFax Developer service'
   rdoc.rdoc_dir = 'doc/rdoc' # rdoc output folder
   rdoc.options << '--line-numbers'
 end
