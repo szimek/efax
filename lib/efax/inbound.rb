@@ -20,7 +20,8 @@ module EFax
                 :page_count,
                 :request_type,
                 :date_received,
-                :request_date
+                :request_date,
+                :barcodes
     
     alias_method :sender_fax_number, :ani
     
@@ -38,6 +39,7 @@ module EFax
       @request_type  = doc.at(:requesttype).inner_text
       @date_received = Time.parse("#{doc.at(:datereceived).inner_text} -08:00")
       @request_date  = Time.parse("#{doc.at(:requestdate).inner_text} -08:00")
+      @barcodes      = doc.search("//barcode/key").map { |key| key.inner_html }
     end
     
     def file_contents
