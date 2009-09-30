@@ -12,7 +12,7 @@ module EFaxInboundTest
     def test_receive_by_xml
       response = EFax::InboundPostRequest.receive_by_xml(xml)
       
-      assert_equal file_contents,  response.file_contents
+      assert_equal file_contents,  response.encoded_file_contents
       assert_equal :pdf,           response.file_type
       assert_equal '098-765-4321', response.sender_fax_number
       assert_equal '098-765-4321', response.ani
@@ -23,6 +23,10 @@ module EFaxInboundTest
       assert_equal 59985697,       response.mcfid
       assert_equal 1,              response.page_count
       assert_equal 'New Inbound',  response.request_type
+      assert_not_nil response.file_contents
+      assert_not_nil response.file
+      assert_respond_to response.file, :read
+      assert_equal response.file_contents, response.file.read
       
       # According to docs these will always be "Pacific Time Zone" (sometimes -8, sometimes -7 -- using -8)
       assert_equal Time.utc(2009,9,29,23,56,35), response.date_received

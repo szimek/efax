@@ -1,5 +1,6 @@
 require 'hpricot'
 require 'base64'
+require 'tempfile'
 require 'time'
 
 module EFax
@@ -8,7 +9,7 @@ module EFax
   end
   
   class InboundPostRequest
-    attr_reader :file_contents,
+    attr_reader :encoded_file_contents,
                 :file_type,
                 :ani,
                 :account_id,
@@ -25,7 +26,7 @@ module EFax
     
     def initialize(xml)
       doc            = Hpricot(xml)
-      @file_contents = doc.at(:filecontents).inner_text
+      @encoded_file_contents = doc.at(:filecontents).inner_text
       @file_type     = doc.at(:filetype).inner_text.to_sym
       @ani           = doc.at(:ani).inner_text
       @account_id    = doc.at(:accountid).inner_text
@@ -37,6 +38,22 @@ module EFax
       @request_type  = doc.at(:requesttype).inner_text
       @date_received = Time.parse("#{doc.at(:datereceived).inner_text} -08:00")
       @request_date  = Time.parse("#{doc.at(:requestdate).inner_text} -08:00")
+    end
+    
+    def file_contents
+      @file_contents ||= Base64.decode64(encoded_file_contents)
+    end
+    
+    def file
+      @file ||= begin
+        file = Tempfile.new(fax_name)
+        file << file_contents
+        file.rewind
+        file
+      end
+    end
+    def post_successful_message
+      "Post Successful"
     end
     
     def self.receive_by_params(params)
