@@ -3,6 +3,10 @@ require 'base64'
 require 'time'
 
 module EFax
+  class InboundPostStatus
+    SUCCESS = 1
+  end
+  
   class InboundPostRequest
     attr_reader :file_contents,
                 :file_type,
