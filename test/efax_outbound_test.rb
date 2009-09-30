@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + '/test_helper'
+require File.dirname(__FILE__) + '/../lib/efax/inbound'
 
-module EFaxTest
+module EFaxOutboundTest
 
   class RequestTest < Test::Unit::TestCase
     def test_should_encode_data

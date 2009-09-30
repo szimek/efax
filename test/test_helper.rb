@@ -1,7 +1,6 @@
 require 'test/unit'
 require 'rubygems'
 require 'mocha'
-require File.dirname(__FILE__) + '/../lib/efax'
 
 class Class
   def publicize_instance_methods

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Szymon Nowak", "Pawel Kozlowski"]
-  s.date = %q{2009-09-28}
+  s.date = %q{2009-09-30}
   s.email = %q{szimek@gmail.com}
   s.extra_rdoc_files = [
     "README.rdoc"
@@ -20,8 +20,8 @@ Gem::Specification.new do |s|
      "Rakefile",
      "TODO",
      "VERSION",
+     "efax.gemspec",
      "lib/efax.rb",
-     "test/efax_test.rb",
      "test/test_helper.rb"
   ]
   s.homepage = %q{http://github.com/szimek/efax}
@@ -31,8 +31,9 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{Ruby library for accessing the eFax Developer service}
   s.test_files = [
-    "test/test_helper.rb",
-     "test/efax_test.rb"
+    "test/efax_inbound_test.rb",
+     "test/efax_outbound_test.rb",
+     "test/test_helper.rb"
   ]
 
   if s.respond_to? :specification_version then
