@@ -1,6 +1,3 @@
-if __FILE__ == $PROGRAM_NAME
-  require File.dirname(__FILE__) + '/../../test/efax_inbound_test'
-end
 require 'hpricot'
 require 'base64'
 require 'time'

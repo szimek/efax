@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{efax}
-  s.version = "1.1.1"
+  s.version = "1.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Szymon Nowak", "Pawel Kozlowski"]
@@ -22,6 +22,10 @@ Gem::Specification.new do |s|
      "VERSION",
      "efax.gemspec",
      "lib/efax.rb",
+     "lib/efax/inbound.rb",
+     "lib/efax/outbound.rb",
+     "test/efax_inbound_test.rb",
+     "test/efax_outbound_test.rb",
      "test/test_helper.rb"
   ]
   s.homepage = %q{http://github.com/szimek/efax}

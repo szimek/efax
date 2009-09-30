@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/test_helper'
-require File.dirname(__FILE__) + '/../lib/efax/inbound'
+require File.dirname(__FILE__) + '/../lib/efax/outbound'
 
 module EFaxOutboundTest
 
