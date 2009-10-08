@@ -7,6 +7,8 @@ You can get it on eFax Developer pages or on Scribd (http://www.scribd.com/doc/5
 
 == Usage
 
+=== Outbound Faxes
+
 First you need to provide your account id and credentials:
   EFax::Request.account_id = <your account id>
   EFax::Request.user       = <your login>
@@ -33,3 +35,15 @@ The status response has the following attributes:
   response.message          # "user friendly" status message
 
 See EFax::QueryStatus class for details on status codes.
+
+=== Inbound Faxes
+
+Inbound faxes work by exposing a URL that EFax can post to when it receives a fax on your account. An example end-point in rails might look like this:
+
+  class InboundFaxesController < AdminController
+    def create
+      efax = EFax::InboundPostRequest.receive_by_params(params)
+      Fax.create(:file => efax.file, :name => efax.name) # etc
+      render :text => efax.post_successful_message # This is important to let EFax know you successfully processed the incoming request.
+    end
+  end
