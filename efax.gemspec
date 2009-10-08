@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{efax}
-  s.version = "1.2.1"
+  s.version = "1.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Szymon Nowak", "Pawel Kozlowski"]
-  s.date = %q{2009-10-01}
+  s.authors = ["Szymon Nowak", "Pawel Kozlowski", "Dr Nic Williams"]
+  s.date = %q{2009-10-09}
   s.email = %q{szimek@gmail.com}
   s.extra_rdoc_files = [
     "README.rdoc"
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
      "VERSION",
      "efax.gemspec",
      "lib/efax.rb",
+     "lib/efax/helpers/inbound_helpers.rb",
      "lib/efax/inbound.rb",
      "lib/efax/outbound.rb",
      "test/efax_inbound_test.rb",
