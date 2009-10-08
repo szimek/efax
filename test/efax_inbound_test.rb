@@ -1,8 +1,10 @@
 require File.dirname(__FILE__) + '/test_helper'
 require File.dirname(__FILE__) + '/../lib/efax/inbound'
+require 'efax/helpers/inbound_helpers'
 
 module EFaxInboundTest
   class InboundPostRequestTest < Test::Unit::TestCase
+    include EFax::Helpers::InboundHelpers
 
     def test_receive_by_params
       EFax::InboundPostRequest.expects(:receive_by_xml).with(xml).returns(response = mock)
@@ -10,8 +12,8 @@ module EFaxInboundTest
     end
     
     def test_receive_by_xml
-      response = EFax::InboundPostRequest.receive_by_xml(xml)
-      
+      response = efax_inbound_post
+
       assert_equal file_contents,  response.encoded_file_contents
       assert_equal :pdf,           response.file_type
       assert_equal '098-765-4321', response.sender_fax_number
