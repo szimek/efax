@@ -11,7 +11,7 @@ module EFax
       def efax_inbound_post_xml(options = {})
         options.symbolize_keys! if options.respond_to?(:symbolize_keys!)
         options[:sender_fax_number] || 
-        default_options = { 
+        default_options          = { 
           :username              => "username",
           :password              => "password",
           :request_date          => "08/18/2005 12:02:25",
@@ -25,8 +25,9 @@ module EFax
           :ani                   => "8587123600",
           :status                => 0,
           :mcfid                 => 12345678,
+          :barcode               => 'EFAXTEST1A',
           :encoded_file_contents => efax_inbound_post_file_contents }
-        options = default_options.merge(options)
+        options                  = default_options.merge(options)
         if options[:contents]
           contents = File.read(options[:contents])
           options[:encoded_file_contents] = Base64.encode64(contents).delete("\n")
@@ -70,7 +71,7 @@ module EFax
                 <BarcodesRead>5</BarcodesRead>
                 <Barcodes>
                   <Barcode>
-                    <Key>EFAXTEST1A</Key>
+                    <Key>#{options[:barcode]}</Key>
                     <AdditionalInfo>
                       <ReadSequence>1</ReadSequence>
                       <ReadDirection>2-Dimentional</ReadDirection>
