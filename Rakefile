@@ -11,7 +11,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "efax"
     gem.summary = 'Ruby library for accessing the eFax Developer service'
-    gem.authors = ["Szymon Nowak", "Pawel Kozlowski"]
+    gem.authors = ["Szymon Nowak", "Pawel Kozlowski", "Dr Nic Williams"]
     gem.email = "szimek@gmail.com"
     gem.homepage = "http://github.com/szimek/efax"
     gem.rubyforge_project = "efax"
