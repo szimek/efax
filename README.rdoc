@@ -47,3 +47,24 @@ Inbound faxes work by exposing a URL that EFax can post to when it receives a fa
       render :text => efax.post_successful_message # This is important to let EFax know you successfully processed the incoming request.
     end
   end
+
+== Test Helpers
+
+You can generate a EFax::InboundPostRequest based on optional explicit fields by using a helper method +efax_inbound_post+:
+
+In your tests:
+
+    require "efax/helpers/inbound_helpers"
+
+    describe InboundFax do
+      include EFax::Helpers::InboundHelpers
+
+      it "should create a fax from efax data" do
+        person = Person.make
+        person.save
+        efax = efax_inbound_post(:barcode => person.barcode_number)
+        fax = InboundFax.create_from_efax!(efax) 
+        fax.person.should == person
+      end
+    end
+    
