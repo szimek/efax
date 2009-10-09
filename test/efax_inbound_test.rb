@@ -12,7 +12,7 @@ module EFaxInboundTest
     end
     
     def test_receive_by_xml
-      response = efax_inbound_post
+      response = efax_inbound_post(:barcodes => %w[EFAXTEST1A EFAXTEST2A EFAXTEST3A EFAXTEST4A EFAXTEST5A])
       
       assert_equal efax_inbound_post_file_contents, response.encoded_file_contents
       assert_equal :pdf,          response.file_type

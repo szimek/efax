@@ -10,7 +10,6 @@ module EFax
       
       def efax_inbound_post_xml(options = {})
         options.symbolize_keys! if options.respond_to?(:symbolize_keys!)
-        options[:sender_fax_number] || 
         default_options          = { 
           :username              => "username",
           :password              => "password",
@@ -25,7 +24,6 @@ module EFax
           :ani                   => "8587123600",
           :status                => 0,
           :mcfid                 => 12345678,
-          :barcode               => 'EFAXTEST1A',
           :encoded_file_contents => efax_inbound_post_file_contents }
         options                  = default_options.merge(options)
         if options[:contents]
@@ -67,139 +65,50 @@ module EFax
                   </UserField>
                 </UserFields>
               </UserFieldControl>
-              <BarcodeControl>
-                <BarcodesRead>5</BarcodesRead>
-                <Barcodes>
-                  <Barcode>
-                    <Key>#{options[:barcode]}</Key>
-                    <AdditionalInfo>
-                      <ReadSequence>1</ReadSequence>
-                      <ReadDirection>2-Dimentional</ReadDirection>
-                      <Symbology>DATAMATRIX</Symbology>
-                      <CodeLocation>
-                        <PageNumber>1</PageNumber>
-                        <PageCoordinates>
-                          <StartEdge>
-                            <XStartPointA>278.0</XStartPointA>
-                            <YStartPointA>577.0</YStartPointA>
-                            <XStartPointB>278.0</XStartPointB>
-                            <YStartPointB>299.0</YStartPointB>
-                          </StartEdge>
-                          <EndEdge>
-                            <XEndPointA>545.0</XEndPointA>
-                            <YEndPointA>299.0</YEndPointA>
-                            <XEndPointB>545.0</XEndPointB>
-                            <YEndPointB>577.0</YEndPointB>
-                          </EndEdge>
-                        </PageCoordinates>
-                      </CodeLocation>
-                    </AdditionalInfo>
-                  </Barcode>
-                  <Barcode>
-                    <Key>EFAXTEST2A</Key>
-                    <AdditionalInfo>
-                      <ReadSequence>1</ReadSequence>
-                      <ReadDirection>2-Dimentional</ReadDirection>
-                      <Symbology>DATAMATRIX</Symbology>
-                      <CodeLocation>
-                        <PageNumber>2</PageNumber>
-                        <PageCoordinates>
-                          <StartEdge>
-                            <XStartPointA>278.0</XStartPointA>
-                            <YStartPointA>600.0</YStartPointA>
-                            <XStartPointB>278.0</XStartPointB>
-                            <YStartPointB>320.0</YStartPointB>
-                          </StartEdge>
-                          <EndEdge>
-                            <XEndPointA>545.0</XEndPointA>
-                            <YEndPointA>320.0</YEndPointA>
-                            <XEndPointB>545.0</XEndPointB>
-                            <YEndPointB>600.0</YEndPointB>
-                          </EndEdge>
-                        </PageCoordinates>
-                      </CodeLocation>
-                    </AdditionalInfo>
-                  </Barcode>
-                  <Barcode>
-                    <Key>EFAXTEST3A</Key>
-                    <AdditionalInfo>
-                      <ReadSequence>1</ReadSequence>
-                      <ReadDirection>2-Dimentional</ReadDirection>
-                      <Symbology>DATAMATRIX</Symbology>
-                      <CodeLocation>
-                        <PageNumber>3</PageNumber>
-                        <PageCoordinates>
-                          <StartEdge>
-                            <XStartPointA>277.0</XStartPointA>
-                            <YStartPointA>608.0</YStartPointA>
-                            <XStartPointB>277.0</XStartPointB>
-                            <YStartPointB>328.0</YStartPointB>
-                          </StartEdge>
-                          <EndEdge>
-                            <XEndPointA>545.0</XEndPointA>
-                            <YEndPointA>328.0</YEndPointA>
-                            <XEndPointB>545.0</XEndPointB>
-                            <YEndPointB>608.0</YEndPointB>
-                          </EndEdge>
-                        </PageCoordinates>
-                      </CodeLocation>
-                    </AdditionalInfo>
-                  </Barcode>
-                  <Barcode>
-                    <Key>EFAXTEST4A</Key>
-                    <AdditionalInfo>
-                      <ReadSequence>1</ReadSequence>
-                      <ReadDirection>2-Dimentional</ReadDirection>
-                      <Symbology>DATAMATRIX</Symbology>
-                      <CodeLocation>
-                        <PageNumber>4</PageNumber>
-                        <PageCoordinates>
-                          <StartEdge>
-                            <XStartPointA>277.0</XStartPointA>
-                            <YStartPointA>608.0</YStartPointA>
-                            <XStartPointB>277.0</XStartPointB>
-                            <YStartPointB>328.0</YStartPointB>
-                          </StartEdge>
-                          <EndEdge>
-                            <XEndPointA>545.0</XEndPointA>
-                            <YEndPointA>328.0</YEndPointA>
-                            <XEndPointB>545.0</XEndPointB>
-                            <YEndPointB>608.0</YEndPointB>
-                          </EndEdge>
-                        </PageCoordinates>
-                      </CodeLocation>
-                    </AdditionalInfo>
-                  </Barcode>
-                  <Barcode>
-                    <Key>EFAXTEST5A</Key>
-                    <AdditionalInfo>
-                      <ReadSequence>1</ReadSequence>
-                      <ReadDirection>2-Dimentional</ReadDirection>
-                      <Symbology>DATAMATRIX</Symbology>
-                      <CodeLocation>
-                        <PageNumber>5</PageNumber>
-                        <PageCoordinates>
-                          <StartEdge>
-                            <XStartPointA>277.0</XStartPointA>
-                            <YStartPointA>608.0</YStartPointA>
-                            <XStartPointB>277.0</XStartPointB>
-                            <YStartPointB>328.0</YStartPointB>
-                          </StartEdge>
-                          <EndEdge>
-                            <XEndPointA>545.0</XEndPointA>
-                            <YEndPointA>328.0</YEndPointA>
-                            <XEndPointB>545.0</XEndPointB>
-                            <YEndPointB>608.0</YEndPointB>
-                          </EndEdge>
-                        </PageCoordinates>
-                      </CodeLocation>
-                    </AdditionalInfo>
-                  </Barcode>
-                </Barcodes>
-              </BarcodeControl>
+              #{efax_inbound_post_barcodes(options[:barcodes] || [])}
               <FileContents>#{options[:encoded_file_contents]}</FileContents>
             </FaxControl>
           </InboundPostRequest>
+        }
+      end
+      
+      def efax_inbound_post_barcodes(barcodes)
+        barcodes_str = barcodes.inject("") do |str, barcode|
+          str += %Q{
+            <Barcode>
+              <Key>#{barcode}</Key>
+              <AdditionalInfo>
+                <ReadSequence>#{barcodes.index(barcode) + 1}</ReadSequence>
+                <ReadDirection>2-Dimentional</ReadDirection>
+                <Symbology>DATAMATRIX</Symbology>
+                <CodeLocation>
+                  <PageNumber>#{barcodes.index(barcode) + 1}</PageNumber>
+                  <PageCoordinates>
+                    <StartEdge>
+                      <XStartPointA>278.0</XStartPointA>
+                      <YStartPointA>577.0</YStartPointA>
+                      <XStartPointB>278.0</XStartPointB>
+                      <YStartPointB>299.0</YStartPointB>
+                    </StartEdge>
+                    <EndEdge>
+                      <XEndPointA>545.0</XEndPointA>
+                      <YEndPointA>299.0</YEndPointA>
+                      <XEndPointB>545.0</XEndPointB>
+                      <YEndPointB>577.0</YEndPointB>
+                    </EndEdge>
+                  </PageCoordinates>
+                </CodeLocation>
+              </AdditionalInfo>
+            </Barcode>
+          }
+        end
+        %Q{
+          <BarcodeControl>
+            <BarcodesRead>#{barcodes.length}</BarcodesRead>
+            <Barcodes>
+              #{barcodes_str}
+            </Barcodes>
+          </BarcodeControl>
         }
       end
       
