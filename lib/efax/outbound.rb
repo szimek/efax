@@ -17,7 +17,7 @@ end
 
 module EFax
   # URL of eFax web service
-  Url      = "https://secure.efaxdeveloper.com/EFax_WebFax.serv"  
+  Url      = "https://secure.efaxdeveloper.com/EFax_WebFax.serv"
   # URI of eFax web service
   Uri      = URI.parse(Url)
   # Prefered content type
@@ -45,7 +45,7 @@ module EFax
     def self.account_id=(id)
       @@account_id = id
     end
-    
+
     def self.params(content)
       escaped_xml = ::URI.escape(content, Regexp.new("[^#{::URI::PATTERN::UNRESERVED}]"))
       "id=#{account_id}&xml=#{escaped_xml}&respond=XML"
@@ -53,7 +53,7 @@ module EFax
 
     private_class_method :params
   end
-  
+
   class OutboundRequest < Request
     def self.post(name, company, fax_number, subject, content, content_type = :html)
       xml_request = xml(name, company, fax_number, subject, content, content_type)
@@ -62,7 +62,7 @@ module EFax
       end
       OutboundResponse.new(response)
     end
-    
+
     def self.xml(name, company, fax_number, subject, content, content_type = :html)
       xml_request = ""
       xml = Builder::XmlMarkup.new(:target => xml_request, :indent => 2 )
@@ -141,7 +141,7 @@ module EFax
       end
       OutboundStatusResponse.new(response)
     end
-    
+
     def self.xml(doc_id)
       xml_request = ""
       xml = Builder::XmlMarkup.new(:target => xml_request, :indent => 2 )
@@ -182,7 +182,7 @@ module EFax
         @message = doc.at(:message).innerText
         @classification = doc.at(:classification).innerText.delete('"')
         @outcome = doc.at(:outcome).innerText.delete('"')
-        if @classification.empty? && @outcome.empty?
+        if !sent_yet?(classification, outcome) || busy_signal?(classification)
           @status_code = QueryStatus::PENDING
         elsif @classification == "Success" && @outcome == "Success"
           @status_code = QueryStatus::SENT
@@ -194,5 +194,14 @@ module EFax
         @message = "HTTP request failed (#{response.code})"
       end
     end
+
+    def busy_signal?(classification)
+      classification == "Busy"
+    end
+
+    def sent_yet?(classification, outcome)
+      !classification.empty? || !outcome.empty?
+    end
+
   end
 end
