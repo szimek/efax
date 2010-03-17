@@ -4,7 +4,6 @@ require 'rake/clean'
 require 'rake/gempackagetask'
 require 'rake/rdoctask'
 require 'rake/testtask'
-require 'spec/rake/spectask'
 
 begin
   require 'jeweler'
@@ -15,11 +14,12 @@ begin
     gem.email = "szimek@gmail.com"
     gem.homepage = "http://github.com/szimek/efax"
     gem.rubyforge_project = "efax"
-    
+
     gem.add_dependency('hpricot', '>= 0.8.1')
+    gem.add_development_dependency('test-unit', '~> 2')
     gem.add_development_dependency('mocha', '>= 0.9')
   end
-  
+
   Jeweler::RubyforgeTasks.new do |rubyforge|
     rubyforge.doc_task = "rdoc"
   end
@@ -38,8 +38,4 @@ end
 
 Rake::TestTask.new do |t|
   t.test_files = FileList['test/**/*.rb']
-end
-
-Spec::Rake::SpecTask.new do |t|
-  t.spec_files = FileList['spec/**/*.rb']
 end

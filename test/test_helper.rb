@@ -1,5 +1,6 @@
-require 'test/unit'
 require 'rubygems'
+gem 'test-unit', '~> 2'
+require 'test/unit'
 require 'mocha'
 
 class Class

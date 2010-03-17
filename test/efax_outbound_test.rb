@@ -381,30 +381,4 @@ module EFaxOutboundTest
       end
     end
   end
-
-  class OutboundStatusTest < Test::Unit::TestCase
-    def test_generate_xml
-      expected_xml = <<-XML
-        <?xml version="1.0" encoding="UTF-8"?>
-        <OutboundStatus>
-          <AccessControl>
-            <UserName>Mike Rotch</UserName>
-            <Password>moes</Password>
-          </AccessControl>
-          <Transmission>
-            <TransmissionControl>
-              <DOCID>123456</DOCID>
-            </TransmissionControl>
-          </Transmission>
-        </OutboundStatus>
-      XML
-
-      EFax::Request.user = "Mike Rotch"
-      EFax::Request.password = "moes"
-      EFax::OutboundStatus.publicize_class_methods do
-        assert_equal expected_xml.delete(" "), EFax::OutboundStatus.xml("123456").delete(" ")
-      end
-    end
-  end
-
 end
