@@ -3,9 +3,6 @@ Gem::Specification.new do |s|
   s.version = "1.3.3"
   s.authors = ["Szymon Nowak", "Pawel Kozlowski", "Dr Nic Williams"]
   s.email = "szimek@gmail.com"
-  s.extra_rdoc_files = [
-    "README.rdoc"
-  ]
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- test/*`.split("\n")
   s.homepage = "http://github.com/szimek/efax"
