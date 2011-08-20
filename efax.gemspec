@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "efax"
-  s.version = "1.3.3"
+  s.version = "1.4.0"
   s.authors = ["Szymon Nowak", "Pawel Kozlowski", "Dr Nic Williams"]
   s.email = "szimek@gmail.com"
   s.files = `git ls-files`.split("\n")
