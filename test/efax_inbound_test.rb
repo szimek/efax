@@ -30,6 +30,7 @@ module EFaxInboundTest
       assert_not_nil response.file_contents
       assert_not_nil response.file
       assert_respond_to response.file, :read
+
       assert_equal response.file_contents, response.file.read
 
       # According to docs these will always be "Pacific Time Zone" (sometimes -8, sometimes -7 -- using -8)
@@ -39,4 +40,3 @@ module EFaxInboundTest
 
   end
 end
-

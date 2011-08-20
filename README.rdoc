@@ -3,7 +3,7 @@
 Ruby library for accessing the eFax Developer service (http://www.efaxdeveloper.com).
 
 Strange class names and their attribute names come from "eFax Developer Universal User Guide for Outbound Processing" document.
-You can get it on eFax Developer pages or on Scribd (http://www.scribd.com/doc/5382394/eFax-Developer-Universal-User-Guide-Outbound).
+You can get it on eFax Developer pages (http://secure.efaxdeveloper.com/techDocs/eFaxDeveloper_Universal_Implementation_Kit_v1.0.zip) or on Scribd (http://www.scribd.com/doc/5382394/eFax-Developer-Universal-User-Guide-Outbound).
 
 == Usage
 
@@ -63,8 +63,8 @@ In your tests:
         person = Person.make
         person.save
         efax = efax_inbound_post(:barcode => person.barcode_number)
-        fax = InboundFax.create_from_efax!(efax) 
+        fax = InboundFax.create_from_efax!(efax)
         fax.person.should == person
       end
     end
-    
+
