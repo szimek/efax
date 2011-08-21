@@ -1,10 +1,9 @@
-require 'rubygems'
-require 'bundler/setup'
+#!/usr/bin/env rake
+require "bundler/gem_tasks"
 require 'rake/testtask'
 
 Rake::TestTask.new do |t|
   t.test_files = FileList['test/**/*.rb']
 end
 
-desc "Default: run all tests"
 task :default => [:test]
