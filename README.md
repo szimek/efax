@@ -2,7 +2,7 @@
 
 Ruby library for accessing [eFax Developer service](http://www.efaxdeveloper.com).
 
-You can find eFax Developer API guides at [efaxdeveloper.com](https://secure.efaxdeveloper.com/techDocs/eFaxDeveloper_Universal_Implementation_Kit_v1.0.zip) or on [Scribd](www.scribd.com/doc/5382394/eFax-Developer-Universal-User-Guide-Outbound).
+You can find eFax Developer API guides at [efaxdeveloper.com](https://secure.efaxdeveloper.com/techDocs/eFaxDeveloper_Universal_Implementation_Kit_v1.0.zip) or on [Scribd](http://www.scribd.com/doc/5382394/eFax-Developer-Universal-User-Guide-Outbound).
 
 ## Usage
 
