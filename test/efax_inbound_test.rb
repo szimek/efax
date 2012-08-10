@@ -27,6 +27,7 @@ module EFaxInboundTest
       assert_equal 'New Inbound', response.request_type
       assert_equal %w[EFAXTEST1A EFAXTEST2A EFAXTEST3A EFAXTEST4A EFAXTEST5A],
                                   response.barcodes
+      assert_equal %w[1 2 3 4 5], response.barcode_pages
       assert_not_nil response.file_contents
       assert_not_nil response.file
       assert_respond_to response.file, :read

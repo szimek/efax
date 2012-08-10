@@ -21,7 +21,8 @@ module EFax
                 :request_type,
                 :date_received,
                 :request_date,
-                :barcodes
+                :barcodes,
+                :barcode_pages
 
     alias_method :sender_fax_number, :ani
 
@@ -40,6 +41,7 @@ module EFax
       @date_received = datetime_to_time(DateTime.strptime("#{doc.at(:datereceived).inner_text} -08:00", "%m/%d/%Y %H:%M:%S %z"))
       @request_date  = datetime_to_time(DateTime.strptime("#{doc.at(:requestdate).inner_text} -08:00", "%m/%d/%Y %H:%M:%S %z"))
       @barcodes      = doc.search("//barcode/key").map { |key| key.inner_html }
+      @barcode_pages = doc.search("//barcode/AdditionalInfo/CodeLocation/PageNumber").map { |key| key.inner_html }
     end
 
     def file_contents
