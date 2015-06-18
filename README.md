@@ -27,7 +27,7 @@ See `EFax::RequestStatus` class for details on status codes.
 Having ID of your request, you can get its current status:
 
 ```ruby
-response = OutboundRequestStatus.post(doc_id)
+response = EFax::OutboundStatus.post(doc_id)
 ```
 
 The status response has the following attributes:
